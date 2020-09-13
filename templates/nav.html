@@ -1,0 +1,231 @@
+{% load static %}
+{% load cart_template_tags %}
+{% load category_template_tags %}
+
+<style>
+	.topbar {
+		background-color: white;
+		color: black !important;
+	}
+	.topbar a:hover{
+		color: black;
+	}
+</style>
+<!-- Header -->
+<header class="header1">
+		<!-- Header desktop -->
+		<div class="container-menu-header">
+			<div class="topbar">
+				<div class="topbar-social">
+					<a href="#" class="topbar-social-item fab fa-facebook"></a>
+					<a href="https://www.instagram.com/invites/contact/?i=1be694kxyb4t1&utm_content=izov7x1" class="topbar-social-item fab fa-instagram"></a>
+
+					<a href="https://accounts.google.com/DisplayUnlockCaptcha" class="topbar-social-item fab fa-twitter"></a>
+					<a href="#" class="topbar-social-item fab fa-youtube"></a>
+				</div>
+
+				<span class="topbar-child1">
+					Free shipping for standard order over &#8377;500
+				</span>
+
+				<div class="topbar-child2">
+					<span class="topbar-email">
+						<a href="">
+							{% if request.user.is_authenticated %}
+								{{user.email}}
+							{% else %}
+								<p>LogIn or Register to account</p>
+							{% endif %}
+
+					    </a>
+					</span>
+
+					<div class="topbar-language rs1-select2">
+						<select class="selection-1" name="time">
+							<option>INR</option>
+							<option>USR</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap_header">
+				<nav class="menu">
+
+				</nav>
+				<!-- Logo -->
+				<a style="text-decoration:None;" href="/" class="logo">
+					<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+					<p style="font: normal 36px 'Cookie', cursive;margin:0px;">All In <span style="color:#5383d3;">One</span></p>
+				</a>
+	<!-- Menu -->
+				<form class="form-inline" method="get" action="/search">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search ...." name="search" id="search">
+				<button class="btn btn-success" type="submit">Search</button>
+			  </form>
+
+				<!-- Header Icon -->
+				<div class="header-icons">
+					{% if request.user.is_authenticated %}
+
+							<li>
+								<a href="{% url 'account_logout' %}">Logout</a>
+							</li>
+							{% else %}
+
+									<li><a href="{% url 'account_login' %}">Login</a></li>
+										<span class="linedivide1"></span>
+									<li><a href="{% url 'account_signup' %}">SignUp</a></li>
+
+							{% endif %}
+
+					<span class="linedivide1"></span>
+
+					<a href="{% url 'core:account' %}" class="header-wrapicon1 dis-block">
+						<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+					</a>
+
+					<span class="linedivide1"></span>
+
+					<div class="header-wrapicon2">
+						<a href="{% url 'core:order-summary' %}" ><img src="{% static 'images/icons/icon-header-02.png' %}" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+							<span class="header-icons-noti">{{ request.user|cart_item_count }}</span>
+
+						<!-- Header cart noti -->
+
+					</div>
+				</div>
+			</div>
+
+
+				<div class="topbar">
+				<div class="topbar-social">
+					<ul class="main_menu">
+							<li>
+								<a href="/">Home</a>
+
+							</li>
+
+							<li>
+								<a href="/shop/">Shop</a>
+							</li>
+
+							{% categories %}
+						</ul>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+		<!-- Header Mobile -->
+		<div class="wrap_header_mobile">
+			<!-- Logo moblie -->
+			<a href="/" class="logo-mobile">
+				<p style="font: normal 36px 'Cookie', cursive;margin:0px;">All In <span style="color:#5383d3;">One</span></p>
+			</a>
+	<!-- Button show menu -->
+			<form class="form-inline" method="get" action="/search">
+
+				<input style="width:170px;" class="form-control mr-sm-2" type="text" placeholder="Search ...." name="search" id="search">
+				<button class="btn btn-success" style=height:40px;" type="submit"><i  class="fa fa-search"></i></button>
+			  </form>
+			<div class="btn-show-menu">
+
+				<!-- Header Icon mobile -->
+				<div class="header-icons-mobile">
+					{% if request.user.is_authenticated %}
+
+							<li>
+								<a href="{% url 'account_logout' %}">Logout</a>
+							</li>
+							{% else %}
+
+									<li><a href="{% url 'account_login' %}">Login</a></li>
+										<span class="linedivide1"></span>
+									<li><a href="{% url 'account_signup' %}">SignUp</a></li>
+
+							{% endif %}
+
+					<span class="linedivide2"></span>
+
+					<a href="{% url 'core:account' %}" class="header-wrapicon1 dis-block">
+						<img src="{% static 'images/icons/icon-header-01.png' %}" class="header-icon1" alt="ICON">
+					</a>
+
+					<span class="linedivide2"></span>
+
+					<div class="header-wrapicon2">
+						<a href="{% url 'core:order-summary' %}">
+						<img src="{% static 'images/icons/icon-header-02.png' %}" class="header-icon1 js-show-header-dropdown" alt="ICON"></a>
+						<span class="header-icons-noti">{{ request.user|cart_item_count }}</span>
+
+
+					</div>
+				</div>
+
+				<div style="margin-right:-15px;" class="btn-show-menu-mobile hamburger hamburger--squeeze">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu Mobile -->
+		<div class="wrap-side-menu" >
+			<nav class="side-menu">
+				<ul class="main-menu">
+					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<span class="topbar-child1">
+							Free shipping for standard order over &#8377;500
+						</span>
+					</li>
+
+					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<div class="topbar-child2-mobile">
+							<span class="topbar-email">
+								{% if request.user.is_authenticated %}
+								{{user.email}}
+							{% else %}
+								<p>LogIn or Register to account</p>
+							{% endif %}
+
+							</span>
+
+							<div class="topbar-language rs1-select2">
+								<select class="selection-1" name="time">
+									<option>INR</option>
+									<option>USD</option>
+								</select>
+							</div>
+						</div>
+					</li>
+
+					<li class="item-topbar-mobile p-l-10">
+						<div class="topbar-social-mobile">
+							<a href="#" class="topbar-social-item fab fa-facebook"></a>
+					<a href="https://www.instagram.com/invites/contact/?i=1be694kxyb4t1&utm_content=izov7x1" class="topbar-social-item fab fa-instagram"></a>
+
+					<a href="https://accounts.google.com/DisplayUnlockCaptcha" class="topbar-social-item fab fa-twitter"></a>
+					<a href="#" class="topbar-social-item fab fa-youtube"></a>
+						</div>
+					</li>
+
+					<li class="item-menu-mobile">
+						<a href="/">Home</a>
+					</li>
+
+					<li class="item-menu-mobile">
+						<a href="/shop">Shop</a>
+					</li>
+
+					{% categories_mobile %}
+
+				</ul>
+			</nav>
+		</div>
+	</header>
